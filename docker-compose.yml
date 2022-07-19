@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    image: discord-bot.py
+    build: .
+    container_name: discord-bot.py
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - "80:80"
+    volumes:
+      - ./src/bot.py:/app/bot.py
