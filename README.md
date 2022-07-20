@@ -7,7 +7,10 @@
 ![Image - Message Handling](/Docs/Images/interaction.png "Bot replying to certain messages")
 
 ### Random meme
-![Image - Search Random Meme](/Docs/Images/search_meme.png "Bot replies with random meme")
+![Image - Search Random Meme](/Docs/Images/meme_search.png "Bot replies with random meme")
+
+### Google search
+![Image - Search Random Meme](/Docs/Images/google_search.png "Bot replies with random meme")
 
 ### More incoming!
 
