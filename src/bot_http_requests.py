@@ -1,5 +1,6 @@
 import requests
 import json
+from googlesearch import search
 
 def meme_search(qnt=1, subreddit=None) -> requests.Response:
     if(subreddit is None):
@@ -8,7 +9,13 @@ def meme_search(qnt=1, subreddit=None) -> requests.Response:
     r = requests.get('https://meme-api.herokuapp.com/gimme/'+subreddit)
     return r
 
-def google_search(query) -> requests.Response:
+def google_search(query) -> list:
+    r = []
+    for link in search(query, tld="co.in", lang='pt-br', num=3, start=0, stop=3, pause=2):
+        r.append(link)
+    return r
+
+def google_http_search(query=None) -> requests.Response:
     request_params = {'q':query}
     r = requests.get('https://www.google.com/search',params=request_params)
     return r
