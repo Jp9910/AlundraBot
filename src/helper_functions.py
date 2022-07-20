@@ -21,8 +21,11 @@ async def handleMessage(message: discord.Message) -> None:
             await message.channel.send('pong')
         case 'vsf':
             await message.reply('vá vc >:T')
+        case 'oi':
+            await message.reply('oi ' + message.author.display_name + ' :)')
         case default:
-            await message.channel.send('123')
+            #emoji = '\N{THUMBS UP SIGN}' # or '\U0001f44d'
+            await message.add_reaction('👍')
 
 async def replyWithMyImage(message: discord.Message) -> None:
     # async with discord.channel.typing():
