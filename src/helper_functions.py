@@ -1,5 +1,7 @@
 import asyncio
 import discord
+import bot_http_requests
+import json
 import os
 
 def messageFromBot(message: discord.Message) -> bool:
@@ -9,10 +11,22 @@ def messageFromBot(message: discord.Message) -> bool:
 
 async def handleCommand(message: discord.Message) -> None:
     print("comando digitado: "+message.content[1:])
-    command = message.content[1:]
+    words = message.content.split()
+    command = words[0][1:]
+    arguments = words[1:] or [None]
+    print("comando: ", command)
+    print("argumentos: ", arguments)
     match command:
         case 'alundra':
             await replyWithMyImage(message)
+        case 'meme':
+            r = bot_http_requests.meme_search(1,arguments[0])
+            jsn = json.loads(r.text)
+            await message.reply(jsn['url'])
+            # To upload the file instead of just linking it,
+            # see https://discordpy.readthedocs.io/en/latest/faq.html#how-do-i-upload-an-image
+        case 'google':
+            pass
 
 
 async def handleMessage(message: discord.Message) -> None:
