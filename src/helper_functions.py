@@ -26,7 +26,10 @@ async def handleCommand(message: discord.Message) -> None:
             # To upload the file instead of just linking it,
             # see https://discordpy.readthedocs.io/en/latest/faq.html#how-do-i-upload-an-image
         case 'google':
-            result = bot_http_requests.google_search(arguments[0])
+            if (not arguments[0]):
+                await message.reply('Digite "!google <algo legal>" para pesquisar')
+                return
+            result = bot_http_requests.google_search(' '.join(str(pal) for pal in arguments[0:]))
             await message.reply('\n'.join(str(link) for link in result))
 
 

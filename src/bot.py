@@ -27,7 +27,7 @@ class MyClient(discord.Client):
                 await handleCommand(message)
             case default:
                 await handleMessage(message)
-                print(message.channel.id)
+                #print(message.channel.id)
 
     async def setup_hook(self) -> None:
         # start the task to run in the background

@@ -10,7 +10,7 @@
 ![Image - Meme Search](/Docs/Images/meme_search.png "Bot replies with random meme")
 
 ### Google search
-![Image - Google Search](/Docs/Images/google_search.png "Bot performs google search")
+![Image - Google Search](/Docs/Images/google_search.PNG "Bot performs google search")
 
 ### More incoming!
 
