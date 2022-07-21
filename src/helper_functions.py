@@ -16,7 +16,7 @@ async def handleCommand(message: discord.Message) -> None:
     arguments = words[1:] or [None]
     print("comando: ", command)
     print("argumentos: ", arguments)
-    match command:
+    match command.lower():
         case 'alundra':
             await replyWithMyImage(message)
 
@@ -38,12 +38,21 @@ async def handleCommand(message: discord.Message) -> None:
             result = bot_http_requests.google_search(' '.join(str(pal) for pal in arguments[0:]))
             await message.reply('\n'.join(str(link) for link in result))
 
+        case 'play':
+            if (not arguments[0]):
+                await message.reply('Digite "!play <nome do vídeo>" para tocar')
+                return
+            await message.channel.send('!play <video> está em desenvolvimento!')
+            # entrar no canal
+            # buscar video
+            # streamar o áudio
+
         case 'digite':
             async with message.channel.typing():
                 await asyncio.sleep(1)
         
         case 'digite2':
-            await message.channel.typing()
+            message.channel.typing()
             # Do some computational magic for about 10 seconds
             await message.channel.send('Done!')
 

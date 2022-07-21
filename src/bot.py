@@ -12,6 +12,7 @@ class MyClient(discord.Client):
     # Bot is ready
     async def on_ready(self):
         print('Logged on as', self.user)
+        await self.setup_hook()
 
     # New message typed
     async def on_message(self, message):
@@ -40,7 +41,7 @@ class MyClient(discord.Client):
         # start the task to run in the background
         self.my_background_task.start()
 
-    @tasks.loop(seconds=10)  # task runs every 10 seconds
+    @tasks.loop(seconds=2.0, count=3)  # task runs every 2.0 seconds, 3 times
     async def my_background_task(self):
         channel = self.get_channel(998764665364566038)  # channel ID goes here
         self.counter += 1
