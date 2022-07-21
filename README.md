@@ -14,7 +14,9 @@
 
 ### More incoming!
 
-### [Add it to your server!](https://discord.com/api/oauth2/authorize?client_id=998761702826967041&scope=bot&permissions=1024)
+### <a href="https://discord.com/api/oauth2/authorize?client_id=998761702826967041&scope=bot&permissions=1024" target="_blank">> Add it to your server! <</a>
+
+## Tools used
 
 *Meme api: [Meme_Api](https://github.com/D3vd/Meme_Api)*
 

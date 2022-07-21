@@ -19,18 +19,37 @@ async def handleCommand(message: discord.Message) -> None:
     match command:
         case 'alundra':
             await replyWithMyImage(message)
+
         case 'meme':
+            async with message.channel.typing():
+                await asyncio.sleep(1)
             r = bot_http_requests.meme_search(1,arguments[0])
             jsn = json.loads(r.text)
             await message.reply(jsn['url'])
             # To upload the file instead of just linking it,
             # see https://discordpy.readthedocs.io/en/latest/faq.html#how-do-i-upload-an-image
+
         case 'google':
             if (not arguments[0]):
                 await message.reply('Digite "!google <algo legal>" para pesquisar')
                 return
+            async with message.channel.typing():
+                await asyncio.sleep(1)
             result = bot_http_requests.google_search(' '.join(str(pal) for pal in arguments[0:]))
             await message.reply('\n'.join(str(link) for link in result))
+
+        case 'digite':
+            async with message.channel.typing():
+                await asyncio.sleep(1)
+        
+        case 'digite2':
+            await message.channel.typing()
+            # Do some computational magic for about 10 seconds
+            await message.channel.send('Done!')
+
+        case default:
+            pass
+
 
 
 async def handleMessage(message: discord.Message) -> None:

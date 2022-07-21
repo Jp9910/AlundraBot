@@ -29,6 +29,13 @@ class MyClient(discord.Client):
                 await handleMessage(message)
                 #print(message.channel.id)
 
+    async def on_voice_state_update(self, member, voiceStateBefore, voiceStateAfter):
+        print('voice event')
+        channel = self.get_channel(998764665364566038)
+        await channel.send('Voice event no canal ' + voiceStateAfter.channel.name)
+        await voiceStateAfter.channel.send('teste')
+
+
     async def setup_hook(self) -> None:
         # start the task to run in the background
         self.my_background_task.start()
