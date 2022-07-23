@@ -2,6 +2,7 @@ import discord
 from discord.ext import tasks
 from helper_functions import *
 import env
+#import voice_bot_example
 
 class MyClient(discord.Client):
 
@@ -11,8 +12,9 @@ class MyClient(discord.Client):
 
     # Bot is ready
     async def on_ready(self):
-        print('Logged on as', self.user)
-        await self.setup_hook()
+        print(f'Logged in as {self.user} (ID: {self.user.id})')
+        print('------')
+        #await self.setup_hook()
 
     # New message typed
     async def on_message(self, message):
@@ -30,6 +32,7 @@ class MyClient(discord.Client):
                 await handleMessage(message)
                 #print(message.channel.id)
 
+    # Event in voice channel (Enter, leave, (un)mute, (un)deafen)
     async def on_voice_state_update(self, member, voiceStateBefore, voiceStateAfter):
         print('voice event')
         channel = self.get_channel(998764665364566038)
@@ -37,6 +40,8 @@ class MyClient(discord.Client):
         await voiceStateAfter.channel.send('teste')
 
 
+    # A new setup_hook() method has also been added to the Client class. 
+    # This method is called after login but before connecting to the discord gateway.
     async def setup_hook(self) -> None:
         # start the task to run in the background
         self.my_background_task.start()
@@ -54,6 +59,7 @@ class MyClient(discord.Client):
         
 
 intents = discord.Intents.default()
+intents.message_content = True
 
 client = MyClient(intents=intents)
 client.run(env.botkey)

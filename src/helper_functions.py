@@ -60,7 +60,7 @@ async def handleCommand(message: discord.Message) -> None:
         case 'cachorro':
             async with message.channel.typing():
                 await asyncio.sleep(1)
-            jsn = await bot_http_requests.dog_search(' '.join(str(pal) for pal in arguments[0:]))
+            jsn = await bot_http_requests.dog_search(arguments[0])
             await message.channel.send(jsn['message'])
 
         case 'digite':
@@ -92,8 +92,8 @@ async def handleMessage(message: discord.Message) -> None:
 async def replyWithMyImage(message: discord.Message) -> None:
     # async with discord.channel.typing():
     #     await asyncio.sleep(3)
-    print(os.listdir())
-    print(os.getcwd())
+    #print(os.listdir())
+    #print(os.getcwd())
     await message.channel.send(
         content='Sou eu!',
         file=discord.File('Resources/Images/alundra.png')
