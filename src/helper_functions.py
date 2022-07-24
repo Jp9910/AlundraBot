@@ -1,3 +1,7 @@
+#print(vars(self.commandHandler))
+#print(self.commandHandler.__dict__)
+# from pprint import pprint; # pprint(self.commandHandler)
+
 import asyncio
 import discord
 import bot_http_requests
@@ -71,6 +75,13 @@ async def handleCommand(message: discord.Message) -> None:
             message.channel.typing()
             # Do some computational magic for about 10 seconds
             await message.channel.send('Done!')
+
+        case 'voice':
+            if (message.author.voice.channel is not None):
+                channel = message.author.voice.channel
+                await channel.connect()
+            else:
+                await message.reply("Entre em um canal de voz antes :3 (Caso já esteja tente sair e entrar novamente)")
 
         case default:
             pass
