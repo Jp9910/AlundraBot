@@ -1,12 +1,8 @@
 import asyncio
 import discord
 import youtube_dl
-import ffmpeg
 from discord import FFmpegPCMAudio
 from discord.ext import commands
-from discord import opus
-
-#opus.load_opus
 
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -84,6 +80,10 @@ class BotMusic(commands.Cog):
         audio_source = discord.FFmpegPCMAudio('chaves.wav')
         if not voice_client.is_playing():
             voice_client.play(audio_source, after=None)
+            await ctx.send(f'Now playing: chaves')
+            voice_client.pause()
+            await asyncio.sleep(2)
+            voice_client.resume()
         # if (ctx.author.voice):
         #     channel = ctx.message.author.voice.channel
         #     voice = await channel.connect()
@@ -121,6 +121,20 @@ class BotMusic(commands.Cog):
 
         ctx.voice_client.source.volume = volume / 100
         await ctx.send(f"Changed volume to {volume}%")
+
+    @commands.command()
+    async def pause(self, ctx):
+        """Pausa o que está sendo tocado"""
+        voice = ctx.voice_client
+        if voice.is_playing():
+            voice.pause()
+
+    @commands.command()
+    async def pause(self, ctx):
+        """Pausa o que está sendo tocado"""
+        voice = ctx.voice_client
+        if not voice.is_playing():
+            voice.resume()
 
     @commands.command()
     async def stop(self, ctx):

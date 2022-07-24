@@ -1,6 +1,15 @@
+# bot token
 env.py
+
+# cache
 __pycache__/
 .google-cookie
+
+# vscode config
 .vscode/
+
+# files downloaded from youtube
+*.m4a
+
 erros/
 lib/
