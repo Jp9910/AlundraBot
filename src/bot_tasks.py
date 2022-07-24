@@ -15,11 +15,11 @@ class BotTasks(commands.Cog):
         # start the task to run in the background
         self.my_background_task.start()
 
-    @tasks.loop(seconds=2.0, count=1)  # task runs every 2.0 seconds, 3 times
+    @tasks.loop(seconds=1200)  # task runs every 2.0 seconds, 3 times @tasks.loop(seconds=2.0, count=3)
     async def my_background_task(self):
         channel = self.client.get_channel(998764665364566038)  # channel ID goes here
         self.counter += 1
-        await channel.send(self.counter)
+        await channel.send("Bebam água seus putos. (" + str(self.counter) + ")")
 
     @my_background_task.before_loop
     async def before_my_task(self):
