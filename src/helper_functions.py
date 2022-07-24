@@ -46,14 +46,14 @@ async def handleCommand(message: discord.Message) -> None:
             jsn = await bot_http_requests.google_http_search(' '.join(str(pal) for pal in arguments[0:]))
             await message.reply(jsn['file'])
 
-        case 'play':
-            if (not arguments[0]):
-                await message.reply('Digite "!play <nome do vídeo>" para tocar')
-                return
-            await message.channel.send('!play <video> está em desenvolvimento!')
-            # entrar no canal
-            # buscar video
-            # streamar o áudio
+        # case 'play':
+        #     if (not arguments[0]):
+        #         await message.reply('Digite "!play <nome do vídeo>" para tocar')
+        #         return
+        #     await message.channel.send('!play <video> está em desenvolvimento!')
+        #     # entrar no canal
+        #     # buscar video
+        #     # streamar o áudio
 
         case 'gato':
             async with message.channel.typing():

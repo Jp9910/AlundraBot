@@ -4,7 +4,10 @@ import asyncio
 import env
 
 intents = discord.Intents.default()
+intents.voice_states = True
 intents.message_content = True
+intents.members = True
+
 bot = commands.Bot(
     command_prefix='!',
     description="Alundra Bot",
@@ -13,7 +16,9 @@ bot = commands.Bot(
 
 extensions = [
     'bot_events',
-    'bot_tasks'
+    'bot_tasks',
+    'bot_commands',
+    'bot_voice'
 ]
 
 async def main():

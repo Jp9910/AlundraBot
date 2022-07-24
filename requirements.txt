@@ -1,5 +1,6 @@
 discord.py
 discord.py[voice]
 youtube_dl
+ffmpeg-python
 beautifulsoup4
 google
