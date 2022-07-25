@@ -135,24 +135,30 @@ class BotMusic(commands.Cog):
         ctx.voice_client.source.volume = volume / 100
         await ctx.send(f"Changed volume to {volume}%")
 
-    @commands.command()
+    @commands.command(aliases=['pare', 'pausar', 'parar'])
     async def pause(self, ctx):
         """Pausa o que está sendo tocado"""
         voice = ctx.voice_client
         if voice.is_playing():
             voice.pause()
 
-    @commands.command()
-    async def pause(self, ctx):
-        """Pausa o que está sendo tocado"""
+    @commands.command(aliases=['continue', 'continuar'])
+    async def resume(self, ctx):
+        """Despausa o que está sendo tocado"""
         voice = ctx.voice_client
-        if not voice.is_playing():
+        if voice.is_paused():
             voice.resume()
 
     @commands.command()
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
-
+        voice = ctx.voice_client
+        if voice.is_playing():
+            voice.stop()
+    
+    @commands.command(aliases=['disconnect', 'leave', 'sai'])
+    async def dc(self, ctx):
+        """Stops and disconnects the bot from voice"""
         await ctx.voice_client.disconnect()
 
     @play.before_invoke
