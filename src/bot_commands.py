@@ -1,13 +1,15 @@
 # This example requires the 'members' and 'message_content' privileged intents to function.
 
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import random
 
 class BotCommands(commands.Cog):
 
     def __init__(self, bot) -> None:
         self.bot = bot
+        self.canal_atual = 0
+        self.counter_agua = 0
 
     @commands.command()
     async def add(self, ctx, left: int, right: int):
@@ -60,6 +62,19 @@ class BotCommands(commands.Cog):
     async def _bot(self, ctx):
         """Is the bot cool?"""
         await ctx.send('Yes, the bot is cool.')
+
+    @commands.command(description='Ativa o lembrete para beber água a cada 20 minutos')
+    async def agua(self, ctx):
+        await ctx.send('Lembrete definido para cada 20 minutos.')
+        self.canal_atual = ctx.channel.id
+        self.bebam_agua.start()
+
+    @tasks.loop(seconds=1200)
+    async def bebam_agua(self):
+        channel = self.bot.get_channel(self.canal_atual)
+        self.counter_agua += 1
+        await channel.send("Bebam água! (" + str(self.counter_agua) + ")")
+        
 
 
 async def setup(bot):
