@@ -35,9 +35,9 @@ class BotEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, voiceStateBefore, voiceStateAfter):
         print('voice event')
-        channel = self.bot.get_channel(998764665364566038)
-        await channel.send('Voice event no canal ' + voiceStateAfter.channel.name)
-        await voiceStateAfter.channel.send('teste')
+        #channel = self.bot.get_channel(998764665364566038)
+        #await channel.send('Voice event no canal ' + voiceStateAfter.channel.name)
+        await voiceStateAfter.channel.send('Voice event aqui')
 
 async def setup(bot):
     await bot.add_cog(BotEvents(bot))

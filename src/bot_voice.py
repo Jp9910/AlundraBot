@@ -56,13 +56,26 @@ class BotMusic(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases=['entre', 'cheguemais'])
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
+    async def join(self, ctx, *, channel: discord.VoiceChannel = None):
         """Joins a voice channel"""
+        # ctx.voice_client é o nome do canal do bot
 
-        if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
+        if ((ctx.message.author.voice is not None) and (channel is None)): #"!join"
+            channel = ctx.message.author.voice.channel
+            if (ctx.voice_client is not None):
+                return await ctx.voice_client.move_to(channel) #se o bot já está em um canal, ele move para outro
+            else:
+                await channel.connect() #se o bot ainda não está um canal, conecta
 
-        await channel.connect()
+        #autor não está em um canal de voz ou especificou um canal de voz
+        else:
+            if ((ctx.voice_client is not None) and (channel is not None)):
+                return await ctx.voice_client.move_to(channel) #se o bot já está em um canal, ele move para outro
+            elif (channel is not None):
+                await channel.connect() #se o bot ainda não está um canal, conecta
+            else:
+                await ctx.message.reply("Entre em um canal de voz ou especifique o nome do canal.") # não especificou o canal e não está em nenhum canal
+        
 
     @commands.command()
     async def play(self, ctx, *, query):
