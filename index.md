@@ -5,22 +5,22 @@
 <h3 align="center"> Message handling </h3>
 
 <p align="center">
-  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/interaction.png" alt="Material Bread logo">
+  <img width="700" src="https://raw.githubusercontent.com/Jp9910/AlundraBot.py/master/Docs/Images/interaction.png" alt="Interaction">
 </p>
 
 <h3 align="center"> Random meme </h3>
 <p align="center">
-  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/meme_search.png" alt="Material Bread logo">
+  <img width="700" src="https://raw.githubusercontent.com/Jp9910/AlundraBot.py/master/Docs/Images/meme_search.png" alt="Meme search">
 </p>
 
 <h3 align="center"> Google search </h3>
 <p align="center">
-  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/google_search.PNG" alt="Material Bread logo">
+  <img width="600" src="https://raw.githubusercontent.com/Jp9910/AlundraBot.py/master/Docs/Images/google_search.PNG" alt="Google search">
 </p>
 
 <h3 align="center"> Play music </h3>
 <p align="center">
-  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/voice.png" alt="Material Bread logo">
+  <img width="600" src="https://raw.githubusercontent.com/Jp9910/AlundraBot.py/master/Docs/Images/voice.png" alt="Playing music">
 </p>
 
 <h3 align="center"> More incoming! </h3>
