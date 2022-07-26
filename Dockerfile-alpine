@@ -1,7 +1,7 @@
-FROM python:3.10-slim
+FROM python:3.10-alpine
 
-# Install necessary apt packages
-RUN apt-get update -y && apt-get install -y vim git ffmpeg
+# Install necessary alpine packages
+RUN apk add --no-cache bash vim git ffmpeg
 
 # Set working directory
 WORKDIR /app/
