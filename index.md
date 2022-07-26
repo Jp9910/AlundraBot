@@ -1,37 +1,34 @@
-## Welcome to GitHub Pages
+<h1 align="center"> Alundra-bot </h1>
 
-You can use the [editor on GitHub](https://github.com/Jp9910/AlundraBot.py/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+<h2 align="center"> Features </h2>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<h3 align="center"> Message handling </h3>
 
-### Markdown
+<p align="center">
+  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/interaction.png" alt="Material Bread logo">
+</p>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<h3 align="center"> Random meme </h3>
+<p align="center">
+  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/meme_search.png" alt="Material Bread logo">
+</p>
 
-```markdown
-Syntax highlighted code block
+<h3 align="center"> Google search </h3>
+<p align="center">
+  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/google_search.PNG" alt="Material Bread logo">
+</p>
 
-# Header 1
-## Header 2
-### Header 3
+<h3 align="center"> Play music </h3>
+<p align="center">
+  <img width="600" src="https://github.com/Jp9910/AlundraBot.py/blob/master/Docs/Images/voice.png" alt="Material Bread logo">
+</p>
 
-- Bulleted
-- List
+<h3 align="center"> More incoming! </h3>
 
-1. Numbered
-2. List
+<h3 align="center"> <a href="https://discord.com/api/oauth2/authorize?client_id=998761702826967041&scope=bot&permissions=8" target="_blank">> Add it to your server! :3 <</a> </h3>
 
-**Bold** and _Italic_ and `Code` text
+## Tools used
 
-[Link](url) and ![Image](src)
-```
+*Meme api: [Meme_Api](https://github.com/D3vd/Meme_Api)*
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Jp9910/AlundraBot.py/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+*Made with python, using [discord.py](https://github.com/Rapptz/discord.py)*
