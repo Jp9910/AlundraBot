@@ -98,7 +98,8 @@ async def handleMessage(message: discord.Message) -> None:
             await message.reply('oi ' + message.author.display_name + ' :)')
         case default:
             #emoji = '\N{THUMBS UP SIGN}' # or '\U0001f44d'
-            await message.add_reaction('👍')
+            pass
+            #await message.add_reaction('👍')
 
 async def replyWithMyImage(message: discord.Message) -> None:
     # async with discord.channel.typing():

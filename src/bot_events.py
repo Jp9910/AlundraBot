@@ -37,7 +37,7 @@ class BotEvents(commands.Cog):
         print('voice event')
         #channel = self.bot.get_channel(998764665364566038)
         #await channel.send('Voice event no canal ' + voiceStateAfter.channel.name)
-        await voiceStateAfter.channel.send('Voice event aqui')
+        #await voiceStateAfter.channel.send('Voice event aqui')
 
 async def setup(bot):
     await bot.add_cog(BotEvents(bot))
