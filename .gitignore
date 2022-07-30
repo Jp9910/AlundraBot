@@ -11,5 +11,6 @@ __pycache__/
 # files downloaded from youtube
 *.m4a
 
+*.zip
+
 erros/
-lib/

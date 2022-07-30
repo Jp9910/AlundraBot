@@ -3,10 +3,12 @@ import discord
 import youtube_dl
 from discord import FFmpegPCMAudio
 from discord.ext import commands
+import wavelink
 
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
 
+# @TODO: Upgrade to Wavelink (https://github.com/PythonistaGuild/Wavelink)
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -52,8 +54,24 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
 
 class BotMusic(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
+        bot.loop.create_task(self.connect_nodes())
+
+    async def connect_nodes(self):
+        """Connect to our Lavalink nodes."""
+        await self.bot.wait_until_ready()
+        await wavelink.NodePool.create_node(
+            bot=self.bot,
+            host='0.0.0.0',
+            port=2333,
+            password='youshallnotpass'
+        )
+    
+    @commands.Cog.listener()
+    async def on_wavelink_node_ready(self, node: wavelink.Node):
+        """Event fired when a node has finished connecting."""
+        print(f'Node: <{node.identifier}> is ready!')
 
     @commands.command(aliases=['entre', 'cheguemais'])
     async def join(self, ctx, *, channel: discord.VoiceChannel = None):
