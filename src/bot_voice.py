@@ -63,7 +63,7 @@ class BotMusic(commands.Cog):
         await self.bot.wait_until_ready()
         await wavelink.NodePool.create_node(
             bot=self.bot,
-            host='0.0.0.0',
+            host='localhost',
             port=2333,
             password='youshallnotpass'
         )
@@ -95,14 +95,29 @@ class BotMusic(commands.Cog):
                 await ctx.message.reply("Entre em um canal de voz ou especifique o nome do canal.") # não especificou o canal e não está em nenhum canal
         
 
+    # @commands.command()
+    # async def play(self, ctx, *, query):
+    #     """Plays a file from the local filesystem"""
+    #
+    #     source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(query))
+    #     ctx.voice_client.play(source, after=lambda e: print(f'Player error: {e}') if e else None)
+    #
+    #     await ctx.send(f'Now playing: {query}')
+
     @commands.command()
-    async def play(self, ctx, *, query):
-        """Plays a file from the local filesystem"""
+    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
+        """Play a song with the given search query.
 
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(query))
-        ctx.voice_client.play(source, after=lambda e: print(f'Player error: {e}') if e else None)
+        If not connected, connect to our voice channel.
+        """
+        if not ctx.voice_client:
+            vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
+        else:
+            vc: wavelink.Player = ctx.voice_client
 
-        await ctx.send(f'Now playing: {query}')
+        await vc.play(search)
+        await ctx.send(f'Now playing: {search}')
+
 
     @commands.command()
     async def chaves(self, ctx):
