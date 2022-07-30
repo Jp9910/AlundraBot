@@ -53,25 +53,9 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
-class BotMusic(commands.Cog):
+class BotVoice(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        bot.loop.create_task(self.connect_nodes())
-
-    async def connect_nodes(self):
-        """Connect to our Lavalink nodes."""
-        await self.bot.wait_until_ready()
-        await wavelink.NodePool.create_node(
-            bot=self.bot,
-            host='localhost',
-            port=2333,
-            password='youshallnotpass'
-        )
-    
-    @commands.Cog.listener()
-    async def on_wavelink_node_ready(self, node: wavelink.Node):
-        """Event fired when a node has finished connecting."""
-        print(f'Node: <{node.identifier}> is ready!')
 
     @commands.command(aliases=['entre', 'cheguemais'])
     async def join(self, ctx, *, channel: discord.VoiceChannel = None):
@@ -104,19 +88,19 @@ class BotMusic(commands.Cog):
     #
     #     await ctx.send(f'Now playing: {query}')
 
-    @commands.command()
-    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
-        """Play a song with the given search query.
-
-        If not connected, connect to our voice channel.
-        """
-        if not ctx.voice_client:
-            vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
-        else:
-            vc: wavelink.Player = ctx.voice_client
-
-        await vc.play(search)
-        await ctx.send(f'Now playing: {search}')
+    # @commands.command()
+    # async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
+    #     """Play a song with the given search query.
+    #
+    #     If not connected, connect to our voice channel.
+    #     """
+    #     if not ctx.voice_client:
+    #         vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
+    #     else:
+    #         vc: wavelink.Player = ctx.voice_client
+    #
+    #     await vc.play(search)
+    #     await ctx.send(f'Now playing: {search}')
 
 
     @commands.command()
@@ -194,7 +178,7 @@ class BotMusic(commands.Cog):
         """Stops and disconnects the bot from voice"""
         await ctx.voice_client.disconnect()
 
-    @play.before_invoke
+    #@play.before_invoke
     @yt.before_invoke
     @stream.before_invoke
     async def ensure_voice(self, ctx):
@@ -208,4 +192,4 @@ class BotMusic(commands.Cog):
             ctx.voice_client.stop()
 
 async def setup(bot):
-    await bot.add_cog(BotMusic(bot))
+    await bot.add_cog(BotVoice(bot))
