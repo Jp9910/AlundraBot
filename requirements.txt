@@ -4,3 +4,4 @@ youtube_dl
 beautifulsoup4
 google
 Wavelink
+async_spotify

@@ -2,6 +2,7 @@ import wavelink
 from discord.ext import commands
 import async_spotify
 
+# https://wavelink.readthedocs.io/en/latest/wavelink.html
 class BotWavelink(commands.Cog):
     """Music cog to hold Wavelink related commands and listeners."""
 
@@ -36,6 +37,37 @@ class BotWavelink(commands.Cog):
             vc: wavelink.Player = ctx.voice_client
 
         await vc.play(search)
+
+    # https://pypi.org/project/async-spotify/
+    @commands.command()
+    async def spotify(self, ctx: commands.Context, url: str):
+        vc: wavelink.Player = (
+            ctx.voice_client
+            or await ctx.author.voice.channel.connect(cls=wavelink.Player)
+        )
+
+        if decoded := async_spotify.decode_url(url):
+
+            if decoded["type"] is async_spotify.SpotifySearchType.unusable:
+                return await ctx.reply(
+                    "This Spotify URL is not usable.", ephemeral=True
+                )
+            elif decoded["type"] in (
+                async_spotify.SpotifySearchType.playlist,
+                async_spotify.SpotifySearchType.album,
+            ):
+                async for partial in async_spotify.SpotifyTrack.iterator(
+                    query=decoded["id"], partial_tracks=True, type=decoded["type"]
+                ):
+                    vc.queue.put(partial)
+                await vc.play(vc.queue[0])
+
+                return await ctx.reply("Added songs to the queue. (Playlist)")
+            else:
+                track = await async_spotify.SpotifyTrack.search(
+                    query=decoded["id"], return_first=True
+                )
+                await vc.play(track)
 
 
 async def setup(bot):
