@@ -142,43 +142,6 @@ class BotVoice(commands.Cog):
 
         await ctx.send(f'Now playing: {player.title}')
 
-    @commands.command()
-    async def volume(self, ctx, volume: int):
-        """Changes the player's volume"""
-
-        if ctx.voice_client is None:
-            return await ctx.send("Not connected to a voice channel.")
-
-        ctx.voice_client.source.volume = volume / 100
-        await ctx.send(f"Changed volume to {volume}%")
-
-    @commands.command(aliases=['pare', 'pausar', 'parar'])
-    async def pause(self, ctx):
-        """Pausa o que está sendo tocado"""
-        voice = ctx.voice_client
-        if voice.is_playing():
-            voice.pause()
-
-    @commands.command(aliases=['continue', 'continuar'])
-    async def resume(self, ctx):
-        """Despausa o que está sendo tocado"""
-        voice = ctx.voice_client
-        if voice.is_paused():
-            voice.resume()
-
-    @commands.command()
-    async def stop(self, ctx):
-        """Stops and disconnects the bot from voice"""
-        voice = ctx.voice_client
-        if voice.is_playing():
-            voice.stop()
-    
-    @commands.command(aliases=['disconnect', 'leave', 'sai'])
-    async def dc(self, ctx):
-        """Stops and disconnects the bot from voice"""
-        await ctx.voice_client.disconnect()
-
-    #@play.before_invoke
     @yt.before_invoke
     @stream.before_invoke
     async def ensure_voice(self, ctx):

@@ -2,18 +2,20 @@
 
 ## Features
 
-### Message handling
-
+### Commands and message reaction
 ![Image - Message Handling](/Docs/Images/interaction.png "Bot replying to certain messages")
+
+### Play music
+![Image - Playing Music](/Docs/Images/voice.png "Bot plays music in voice channels")
 
 ### Random meme
 ![Image - Meme Search](/Docs/Images/meme_search.png "Bot replies with random meme")
 
+### Random cat image
+![Image - Cat Search](/Docs/Images/cat_search.png "Bot replies with cat picture")
+
 ### Google search
 ![Image - Google Search](/Docs/Images/google_search.PNG "Bot performs google search")
-
-### Play music
-![Image - Playing Music](/Docs/Images/voice.png "Bot plays music in voice channels")
 
 ### More incoming!
 
@@ -21,6 +23,8 @@
 
 ## Tools used
 
-*Meme api: [Meme_Api](https://github.com/D3vd/Meme_Api)*
+*Memes api: [Meme_Api](https://github.com/D3vd/Meme_Api)*
+
+*Music: [Wavelink](https://github.com/PythonistaGuild/Wavelink)*
 
 *Made with python, using [discord.py](https://github.com/Rapptz/discord.py)*
