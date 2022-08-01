@@ -19,18 +19,6 @@ class BotEvents(commands.Cog):
     async def on_message(self, message: discord.Message):
         print(f'Message from {message.author}: {message.content}')
 
-        if (message.author.bot):
-            return
-
-        firstLetter = message.content[0]
-
-        match firstLetter:
-            case '!':
-                await helper_functions.handleCommand(message)
-            case default:
-                await helper_functions.handleMessage(message)
-                #print(message.channel.id)
-
     # Event in voice channel (Enter, leave, (un)mute, (un)deafen)
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, voiceStateBefore, voiceStateAfter):

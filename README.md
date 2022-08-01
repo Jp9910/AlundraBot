@@ -2,6 +2,8 @@
 
 ## Features
 
+Type _!help_ to see all commands
+
 ### Commands and message reaction
 ![Image - Message Handling](/Docs/Images/interaction.png "Bot replying to certain messages")
 
