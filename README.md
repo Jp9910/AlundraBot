@@ -2,8 +2,6 @@
 
 ## Features
 
-Type _!help_ to see all commands
-
 ### Commands and message reaction
 ![Image - Message Handling](/Docs/Images/interaction.png "Bot replying to certain messages")
 
@@ -21,7 +19,19 @@ Type _!help_ to see all commands
 
 ### More incoming!
 
+Type _!help_ to see all commands
+
 ### <a href="https://discord.com/api/oauth2/authorize?client_id=998761702826967041&scope=bot&permissions=8" target="_blank">> Add it to your server! <</a>
+
+## Manually running the bot
+- Clone repo
+
+- Start lavalink service for voice commands.
+    >cd Resources/lavalink
+    >java -jar Lavalink.jar
+
+- Start bot
+    >python src/bot.py
 
 ## Tools used
 
