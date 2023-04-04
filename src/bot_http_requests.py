@@ -1,7 +1,9 @@
 from googlesearch import search
 import aiohttp
+import env
 
 async def meme_search(qnt=1, subreddit=None) -> dict:
+    jsn = None
     async with aiohttp.ClientSession() as session:
         if(subreddit is None):
             async with session.get('https://meme-api.herokuapp.com/gimme') as r:
@@ -11,7 +13,11 @@ async def meme_search(qnt=1, subreddit=None) -> dict:
             async with session.get('https://meme-api.herokuapp.com/gimme/'+subreddit) as r:
                 if r.status == 200:
                     jsn = await r.json()
-        return jsn
+
+    if jsn is None:
+        raise Exception("json é none")
+
+    return jsn
 
 def google_search(query) -> list:
     r = []
@@ -47,6 +53,15 @@ async def dog_search(breed=None) -> dict:
                     jsn = await r.json()
                     return jsn
 
+async def elo(summoner_name, region="br1") -> dict:
+    headers = {"X-Riot-Token": env.riotApiToken}
+    async with aiohttp.ClientSession(headers=headers) as session:
+        async with session.get(f'https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}') as r1:
+            json_data = await r1.json()
+
+        async with session.get(f'https://{region}.api.riotgames.com/lol/league/v4/entries/by-summoner/{json_data["id"]}') as r2:
+            json_result = await r2.json()
+            return json_result
 
 # r = meme_search()
 # # print("Status code: ", r.status_code)

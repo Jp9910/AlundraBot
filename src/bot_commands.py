@@ -89,6 +89,23 @@ class BotCommands(commands.Cog):
         jsn = await bot_http_requests.meme_search(1,arguments[0])
         await ctx.message.reply(jsn['url'])
 
+    @commands.command()
+    async def elo(self, ctx):
+        """Check someone's elo in League of legends."""
+        (command, arguments) = helper_functions.splitCommandFromArguments(ctx.message)
+        async with ctx.message.channel.typing():
+            await asyncio.sleep(1)
+        if (len(arguments) >= 2):
+            jsn = await bot_http_requests.elo(summoner_name=arguments[0],region=arguments[1])
+        elif (len(arguments) == 1):
+            jsn = await bot_http_requests.elo(summoner_name=arguments[0])
+        else:
+            await ctx.message.reply("Use !elo <summoner_name> <region>")
+        laugh = ""
+        if (jsn[0]["tier"] == "Bronze" or jsn[0]["tier"] == "Iron"):
+            laugh = " KKKKKKKKKKK"
+        await ctx.message.reply(jsn[0]['tier'] + " " + jsn[0]["rank"] + laugh)
+
     @commands.group()
     async def cool(self, ctx):
         """Says if a user is cool.In reality this just checks if a subcommand is being invoked."""

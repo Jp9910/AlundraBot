@@ -37,3 +37,5 @@ async def main():
         await bot.start(env.botkey)
 
 asyncio.run(main())
+
+# TODO: Avisar sobre evento de saída do servidor
