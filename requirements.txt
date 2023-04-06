@@ -3,5 +3,5 @@ discord.py[voice]
 youtube_dl
 beautifulsoup4
 google
-Wavelink
+Wavelink==1.3.5
 async_spotify

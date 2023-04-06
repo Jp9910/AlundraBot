@@ -26,9 +26,8 @@ Type _!help_ to see all commands
 ## Manually running the bot
 - Clone repo
 
-- Start lavalink service for voice commands.
-    >cd Resources/lavalink
-    >java -jar Lavalink.jar
+- Start lavalink service for voice commands. 
+    >java -jar Resources/lavalink/Lavalink.jar
 
 - Start bot
     >python src/bot.py
