@@ -14,4 +14,5 @@ RUN pip install --no-cache-dir --upgrade --requirement requirements.txt
 COPY ./src/ ./src/
 COPY ./chaves.wav /app/
 
-#CMD [ "python", "/app/src/bot.py" ]
+# Start bot
+CMD [ "python", "/app/src/bot.py" ]

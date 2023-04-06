@@ -2,10 +2,27 @@ version: '3.8'
 
 services:
   app:
-    image: discord-bot.py
-    build: .
-    container_name: discord-bot.py
+    image: jp9910/alundra-bot.py:1.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - wavelink
+    container_name: bot
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+    links:
+      - "wavelink"
     volumes:
       - ./src/:/app/src/
+
+  wavelink:
+    image: jp9910/alundra-bot.wavelink:1.0
+    build: 
+      context: .
+      dockerfile: Dockerfile.wavelink
+    container_name: wavelink
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    expose:
+      - "2333"

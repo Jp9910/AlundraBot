@@ -1,0 +1,4 @@
+FROM openjdk:17
+MAINTAINER jp9910
+COPY Resources/lavalink/ /lavalink/
+CMD ["java","-jar","/lavalink/lavalink.jar"]
