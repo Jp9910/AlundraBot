@@ -19,7 +19,7 @@ class BotWavelink(commands.Cog):
         await self.bot.wait_until_ready()
         await wavelink.NodePool.create_node(
             bot=self.bot,
-            host='localhost',
+            host='wavelink',
             port=2333,
             password='youshallnotpass'
         )

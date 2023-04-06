@@ -11,8 +11,6 @@ services:
     container_name: bot
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    links:
-      - "wavelink"
     volumes:
       - ./src/:/app/src/
 
@@ -26,3 +24,4 @@ services:
     tty: true        # docker run -t
     expose:
       - "2333"
+      - "8080"

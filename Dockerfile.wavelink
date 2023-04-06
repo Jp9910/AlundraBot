@@ -1,4 +1,15 @@
-FROM openjdk:17
-MAINTAINER jp9910
-COPY Resources/lavalink/ /lavalink/
-CMD ["java","-jar","/lavalink/lavalink.jar"]
+FROM eclipse-temurin:18-jre-focal
+
+# Run as non-root user
+RUN groupadd -g 322 lavalink && \
+    useradd -r -u 322 -g lavalink lavalink
+
+WORKDIR /opt/Lavalink
+
+RUN chown -R lavalink:lavalink /opt/Lavalink
+
+USER lavalink
+
+COPY Resources/lavalink/lavalink.jar Resources/lavalink/application.yml /opt/Lavalink/
+
+ENTRYPOINT ["java", "-Djdk.tls.client.protocols=TLSv1.1,TLSv1.2", "-Xmx4G", "-jar", "lavalink.jar"]
